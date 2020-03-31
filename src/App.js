@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
+
 import './App.css';
+import { ThemeProvider } from 'emotion-theming';
+import { Box } from 'rebass';
+
+const theme = {
+  space: [0, 4, 8, 16, 32],
+  colors: {
+    offwhite: '#FFF6EF',
+    muddy: '#A15522',
+  },
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ThemeProvider theme={theme}>
+      <div>
+        <Box
+          css={css({
+            margin: '16px',
+            padding: '16px',
+            backgroundColor: theme.colors.offwhite,
+            color: theme.colors.muddy,
+          })}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          This section uses Emotion's css prop!
+        </Box>
+
+        <Box m={3} p={3} backgroundColor="offwhite" color="muddy">
+          This section uses Rebass components and style props!
+        </Box>
+      </div>
+    </ThemeProvider>
   );
 }
 
